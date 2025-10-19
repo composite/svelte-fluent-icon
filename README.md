@@ -1,58 +1,98 @@
-# Svelte library
+# svelte-fluent-icon
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+A tiny Svelte 5 component library that exposes Microsoft Fluent System Icons as Svelte components. Icons are sourced from `@iconify-json/fluent` and compiled into tree-shakeable modules.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+- Framework: Svelte 5 (peer dependency)
+- Package name: `svelte-fluent-icon`
+- Generated from: `@iconify-json/fluent` using a small generator script (`generate-icon.ts`)
 
-## Creating a project
+## Install
 
-If you're seeing this, you've probably already done this step. Congrats!
+```bash
+# with pnpm
+pnpm add svelte-fluent-icon
 
-```sh
-# create a new project in the current directory
-npx sv create
+# with npm
+yarn add svelte-fluent-icon
 
-# create a new project in my-app
-npx sv create my-app
+# with yarn
+npm i svelte-fluent-icon
 ```
 
-## Developing
+## Usage
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+There are two ways to import icons:
 
-```sh
-npm run dev
+1) Import by size and style (recommended for clear intent and smaller bundles)
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```svelte
+<script>
+  // 20px, filled variant
+  import { AccessTimeIcon } from 'svelte-fluent-icon/icon/20/filled';
+</script>
+
+<AccessTimeIcon width={20} height={20} aria-label="Access time" />
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+2) Import from the package root using a suffixed name
 
-## Building
+```svelte
+<script>
+  // Name is suffixed with size+style
+  import { AccessTime20FilledIcon } from 'svelte-fluent-icon';
+</script>
 
-To build your library:
-
-```sh
-npm pack
+<AccessTime20FilledIcon class="text-gray-700" aria-hidden />
 ```
 
-To create a production version of your showcase app:
+Notes
+- Components accept standard SVG attributes (width, height, class, style, role, aria-*).
+- Svelte 5 render hooks are available: a `pre` render function and the default children render function are supported internally by the generator, allowing advanced composition if needed.
 
-```sh
-npm run build
+## Available sizes and styles
+
+Icons are generated in these sizes and styles (matching Fluent icons availability):
+
+- Sizes: 10, 12, 16, 20, 24, 28, 32, 48
+- Styles: regular, filled, light (light only for some sizes)
+
+Import paths follow:
+- `svelte-fluent-icon/icon/<size>/<style>` for per-folder named exports (e.g. `AccessTimeIcon`)
+- Root exports expose suffixed names (e.g. `AccessTime20FilledIcon`)
+
+## How it works (generation)
+
+The generator (`generate-icon.ts`) reads Fluent icon metadata and creates Svelte components under `src/lib/icon/<size>/<style>`. For each icon it:
+- Renders SVG via `@iconify/utils` (`iconToSVG`, `iconToHTML`, `replaceIDs`)
+- Emits `<Name>.svelte` with Svelte 5 render hooks (`pre`, `children`) and forwards all remaining SVG props
+- Writes `index.ts` files so you can import either by folder or via the package root
+
+You can regenerate icons locally with:
+
+```bash
+pnpm run generate
 ```
 
-You can preview the production build with `npm run preview`.
+This will clean previously generated folders and build fresh components.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Scripts
 
-## Publishing
+These are the most relevant commands from package.json:
+- `pnpm run generate` — regenerate icons from `@iconify-json/fluent`
+- `pnpm run prepack` — clean, generate, sync, and package the library
+- `pnpm run build` — app build then prepack the library
+- `pnpm run check` — typecheck via svelte-check
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+## TypeScript
 
-To publish your library to [npm](https://www.npmjs.com):
+Type definitions for the library are emitted to `dist`. The package `exports` map exposes both Svelte and types for root and per-folder entry points.
 
-```sh
-npm publish
-```
+## License
+
+MIT — see the LICENSE file.
+
+## Acknowledgements
+
+- Icons: `@iconify-json/fluent`
+- Utilities: `@iconify/utils`
+- Packaging: SvelteKit + `@sveltejs/package`
