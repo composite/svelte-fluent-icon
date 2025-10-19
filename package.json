@@ -2,11 +2,11 @@
 	"name": "svelte-fluent-icon",
 	"version": "0.0.1",
 	"author": "Composite",
-  "homepage": "https://github.com/composite/svelte-fluent-icon",
+	"homepage": "https://github.com/composite/svelte-fluent-icon",
 	"repository": {
-    "type": "git",
-    "url": "https://github.com/composite/svelte-fluent-icon.git"
-  },
+		"type": "git",
+		"url": "https://github.com/composite/svelte-fluent-icon.git"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && pnpm run prepack",
@@ -19,8 +19,8 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"generate": "pnpm run clean:gen && pnpm dlx tsx ./generate-icon.ts",
-		"clean": "rm -rf dist",
-		"clean:gen": "rm -rf src/lib/icon/1? && rm -rf src/lib/icon/2? && rm -rf src/lib/icon/32 && rm -rf src/lib/icon/48",
+		"clean": "rimraf dist",
+		"clean:gen": "rimraf src/lib/icon/1? rimraf src/lib/icon/2? rimraf src/lib/icon/32 rimraf src/lib/icon/48",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run"
 	},
@@ -285,6 +285,7 @@
 		"prettier": "^3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",
 		"publint": "^0.3.13",
+		"rimraf": "^6.0.1",
 		"svelte": "^5.39.5",
 		"svelte-check": "^4.3.2",
 		"typescript": "^5.9.2",
@@ -296,9 +297,9 @@
 	},
 	"keywords": [
 		"svelte",
-    "fluent",
-    "icons",
-    "fluent icons",
-    "svelte-fluent-icons"
+		"fluent",
+		"icons",
+		"fluent icons",
+		"svelte-fluent-icons"
 	]
 }
