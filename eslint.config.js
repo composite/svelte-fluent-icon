@@ -38,5 +38,8 @@ export default defineConfig(
 				svelteConfig
 			}
 		}
+	},
+	{
+		ignores: ['src/lib/icon/**/*.ts']
 	}
 );

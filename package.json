@@ -20,6 +20,7 @@
 	},
 	"files": [
 		"dist",
+		"!dist/icon/Empty.*",
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
@@ -40,9 +41,90 @@
 			"svelte": "./dist/icon/*/index.js",
 			"default": "./dist/icon/*/index.js"
 		},
-		"./icon/*.svelte": {
-			"types": "./dist/icon/*.svelte.d.ts",
-			"svelte": "./dist/icon/*.svelte"
+		"./icon/*/*": {
+			"types": "./dist/icon/*/*/index.d.ts",
+			"svelte": "./dist/icon/*/*/index.js",
+			"default": "./dist/icon/*/*/index.js"
+		},
+		"./icon/10/filled/*.svelte": {
+			"types": "./dist/icon/10/filled/*.svelte.d.ts",
+			"svelte": "./dist/icon/10/filled/*.svelte"
+		},
+		"./icon/10/regular/*.svelte": {
+			"types": "./dist/icon/10/regular/*.svelte.d.ts",
+			"svelte": "./dist/icon/10/regular/*.svelte"
+		},
+		"./icon/12/filled/*.svelte": {
+			"types": "./dist/icon/12/filled/*.svelte.d.ts",
+			"svelte": "./dist/icon/12/filled/*.svelte"
+		},
+		"./icon/12/regular/*.svelte": {
+			"types": "./dist/icon/12/regular/*.svelte.d.ts",
+			"svelte": "./dist/icon/12/regular/*.svelte"
+		},
+		"./icon/16/filled/*.svelte": {
+			"types": "./dist/icon/16/filled/*.svelte.d.ts",
+			"svelte": "./dist/icon/16/filled/*.svelte"
+		},
+		"./icon/16/regular/*.svelte": {
+			"types": "./dist/icon/16/regular/*.svelte.d.ts",
+			"svelte": "./dist/icon/16/regular/*.svelte"
+		},
+		"./icon/20/filled/*.svelte": {
+			"types": "./dist/icon/20/filled/*.svelte.d.ts",
+			"svelte": "./dist/icon/20/filled/*.svelte"
+		},
+		"./icon/20/regular/*.svelte": {
+			"types": "./dist/icon/20/regular/*.svelte.d.ts",
+			"svelte": "./dist/icon/20/regular/*.svelte"
+		},
+		"./icon/24/filled/*.svelte": {
+			"types": "./dist/icon/24/filled/*.svelte.d.ts",
+			"svelte": "./dist/icon/24/filled/*.svelte"
+		},
+		"./icon/24/light/*.svelte": {
+			"types": "./dist/icon/24/light/*.svelte.d.ts",
+			"svelte": "./dist/icon/24/light/*.svelte"
+		},
+		"./icon/24/regular/*.svelte": {
+			"types": "./dist/icon/24/regular/*.svelte.d.ts",
+			"svelte": "./dist/icon/24/regular/*.svelte"
+		},
+		"./icon/28/filled/*.svelte": {
+			"types": "./dist/icon/28/filled/*.svelte.d.ts",
+			"svelte": "./dist/icon/28/filled/*.svelte"
+		},
+		"./icon/28/light/*.svelte": {
+			"types": "./dist/icon/28/light/*.svelte.d.ts",
+			"svelte": "./dist/icon/28/light/*.svelte"
+		},
+		"./icon/28/regular/*.svelte": {
+			"types": "./dist/icon/28/regular/*.svelte.d.ts",
+			"svelte": "./dist/icon/28/regular/*.svelte"
+		},
+		"./icon/32/filled/*.svelte": {
+			"types": "./dist/icon/32/filled/*.svelte.d.ts",
+			"svelte": "./dist/icon/32/filled/*.svelte"
+		},
+		"./icon/32/light/*.svelte": {
+			"types": "./dist/icon/32/light/*.svelte.d.ts",
+			"svelte": "./dist/icon/32/light/*.svelte"
+		},
+		"./icon/32/regular/*.svelte": {
+			"types": "./dist/icon/32/regular/*.svelte.d.ts",
+			"svelte": "./dist/icon/32/regular/*.svelte"
+		},
+		"./icon/48/filled/*.svelte": {
+			"types": "./dist/icon/48/filled/*.svelte.d.ts",
+			"svelte": "./dist/icon/48/filled/*.svelte"
+		},
+		"./icon/48/light/*.svelte": {
+			"types": "./dist/icon/48/light/*.svelte.d.ts",
+			"svelte": "./dist/icon/48/light/*.svelte"
+		},
+		"./icon/48/regular/*.svelte": {
+			"types": "./dist/icon/48/regular/*.svelte.d.ts",
+			"svelte": "./dist/icon/48/regular/*.svelte"
 		}
 	},
 	"peerDependencies": {

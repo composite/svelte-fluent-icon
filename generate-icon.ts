@@ -88,41 +88,45 @@ ${svg}
 	}
 
 	// Create index files
+	const sizeExports: string[] = [];
 	for (const [size, stylesMap] of bySizeStyle) {
 		// style-level index.ts
+		const styleExports = [];
 		for (const [style, components] of stylesMap) {
 			const styleDir = path.join(ROOT_DIR, size, style);
 			const indexPath = path.join(styleDir, 'index.ts');
 			components.sort();
-			const exports =
+			styleExports.push(
 				components
 					.map(
 						(name) =>
-							`export { default as ${name}${toPascalCase(`${size}-${style}`)} } from './${name}.svelte';\nexport { default as ${name}${toPascalCase(`${size}-${style}`)}Icon } from './${name}.svelte';`
+							`export { default as ${name}${toPascalCase(`${size}-${style}`)}Icon } from '$lib/icon/${size}/${style}/${name}.svelte';`
 					)
-					.join('\n') + '\n';
-			await writeFile(indexPath, exports, 'utf8');
+					.join('\n') + '\n'
+			);
+			await writeFile(
+				indexPath,
+				components
+					.map(
+						(name) =>
+							`export { default as ${name}Icon } from '$lib/icon/${size}/${style}/${name}.svelte';`
+					)
+					.join('\n') + '\n',
+				'utf8'
+			);
 		}
 
 		// size-level index.ts re-exporting from each style
 		const sizeDir = path.join(ROOT_DIR, size);
 		const sizeIndexPath = path.join(sizeDir, 'index.ts');
-		const styleExports =
-			Array.from(stylesMap.keys())
-				.sort()
-				.map((s) => `export * from './${s}/index.js';`)
-				.join('\n') + '\n';
-		await writeFile(sizeIndexPath, styleExports, 'utf8');
+		sizeExports.push(styleExports.join('\n'));
+		await writeFile(
+			sizeIndexPath,
+			styleExports.map((s) => s.replaceAll(size, '')).join('\n'),
+			'utf8'
+		);
 	}
 
-	const sizeExports =
-		`export * from '../types/icon.js';` +
-		'\n' +
-		Array.from(bySizeStyle.keys())
-			.sort()
-			.map((s) => `export * from './${s}/index.js';`)
-			.join('\n') +
-		'\n';
 	await writeFile(path.join(ROOT_DIR, 'index.ts'), sizeExports, 'utf8');
 
 	console.log('Generation complete.');
