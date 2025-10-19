@@ -1,5 +1,10 @@
 # svelte-fluent-icon
 
+v0.0.1
+
+[![NPM Version](https://img.shields.io/npm/v/svelte-fluent-icon
+)](https://www.npmjs.com/package/svelte-fluent-icon)
+
 A tiny Svelte 5 component library that exposes Microsoft Fluent System Icons as Svelte components. Icons are sourced from `@iconify-json/fluent` and compiled into tree-shakeable modules.
 
 - Framework: Svelte 5 (peer dependency)
