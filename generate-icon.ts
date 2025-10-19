@@ -122,7 +122,11 @@ ${svg}
 		sizeExports.push(styleExports.join('\n'));
 		await writeFile(
 			sizeIndexPath,
-			styleExports.map((s) => s.replaceAll(size, '')).join('\n'),
+			styleExports
+				.map((s) =>
+					s.replaceAll(`${size}/`, 'SIZE/').replaceAll(size, '').replaceAll('SIZE/', `${size}/`)
+				)
+				.join('\n'),
 			'utf8'
 		);
 	}
